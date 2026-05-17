@@ -1,0 +1,106 @@
+.auth-page {
+  min-height: 100vh;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-card {
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+}
+
+.auth-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: #f0ede8;
+  margin-bottom: 4px;
+}
+
+.auth-logo span {
+  color: #e8132a;
+}
+
+.auth-sub {
+  text-align: center;
+  font-size: 12px;
+  color: #5a5550;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a5550;
+  margin-bottom: 6px;
+}
+
+.input-group input {
+  width: 100%;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #f0ede8;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #e8132a;
+}
+
+button {
+  width: 100%;
+  background: #e8132a;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+button:hover {
+  background: #c01020;
+}
+
+.error {
+  color: #ef4444;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.auth-toggle {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #5a5550;
+}
+
+.auth-toggle a {
+  color: #e8132a;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -1,0 +1,79 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="logo">🎸 RIFF<span>STORE</span></div>
+    <nav>
+      <div class="nav-section">MENU</div>
+      <a routerLink="/dashboard" class="nav-item">Dashboard</a>
+      <a routerLink="/products" class="nav-item active">Produtos</a>
+      <a routerLink="/categories" class="nav-item">Categorias</a>
+      <a routerLink="/orders" class="nav-item">Meus Pedidos</a>
+      <a routerLink="/cart" class="nav-item">Carrinho</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <h1 class="page-title">Catálogo</h1>
+    <p class="page-sub">Guitarras, amplificadores, pedais e mais</p>
+    <div class="accent-line"></div>
+
+    <div class="search-bar">
+      <span>🔍</span>
+      <input [(ngModel)]="search" (ngModel)="filter()" (input)="filter()" placeholder="Buscar produtos..." />
+    </div>
+
+    <div class="filters">
+      <div class="chip" [class.active]="selectedCat === null" (click)="selectCat(null)">Todos</div>
+      @for (c of categories; track c.id) {
+        <div class="chip" [class.active]="selectedCat === c.id" (click)="selectCat(c.id)">{{ c.name }}</div>
+      }
+    </div>
+
+    <div class="products-grid">
+      @for (p of filtered; track p.id) {
+        <div class="product-card" (click)="openDetail(p)">
+          <div class="product-img">
+            {{ getCatIcon(getCatName(p.categoryId)) }}
+            <span class="stock-badge" [class.low]="p.stock < 3 && p.stock > 0" [class.out]="p.stock === 0">
+              {{ p.stock === 0 ? 'Esgotado' : p.stock + ' un.' }}
+            </span>
+          </div>
+          <div class="product-body">
+            <div class="product-name">{{ p.name }}</div>
+            <div class="product-brand">{{ p.brand }}</div>
+          </div>
+          <div class="product-footer">
+            <div class="product-price">{{ fmt(p.price) }}</div>
+            <div class="product-cat">{{ getCatName(p.categoryId) }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </main>
+</div>
+
+@if (selectedProduct) {
+  <div class="modal-overlay" (click)="closeDetail()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">{{ selectedProduct.name }}</span>
+        <button (click)="closeDetail()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-icon">{{ getCatIcon(getCatName(selectedProduct.categoryId)) }}</div>
+        <p class="modal-desc">{{ selectedProduct.description || 'Sem descrição disponível.' }}</p>
+        <div class="modal-row">
+          <div class="modal-price">{{ fmt(selectedProduct.price) }}</div>
+          <div class="qty-control">
+            <button (click)="changeQty(-1)">−</button>
+            <span>{{ qty }}</span>
+            <button (click)="changeQty(1)">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="closeDetail()">Fechar</button>
+        <button class="btn-add" (click)="addToCart()">🛒 Adicionar ao Carrinho</button>
+      </div>
+    </div>
+  </div>
+}

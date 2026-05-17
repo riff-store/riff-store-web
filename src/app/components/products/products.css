@@ -1,0 +1,190 @@
+.layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 240px;
+  background: #111111;
+  border-right: 1px solid #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  position: fixed;
+  height: 100vh;
+}
+
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.1em;
+  color: #f0ede8;
+  padding: 0 20px 24px;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 16px;
+}
+.logo span { color: #e8132a; }
+
+.nav-section {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #5a5550;
+  text-transform: uppercase;
+  padding: 8px 20px;
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 20px;
+  color: #a09a92;
+  font-size: 14px;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+}
+.nav-item:hover, .nav-item.active {
+  color: #f0ede8;
+  background: #1a1a1a;
+  border-left-color: #e8132a;
+}
+
+.content { margin-left: 240px; padding: 32px; flex: 1; }
+
+.page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  letter-spacing: 0.06em;
+  color: #f0ede8;
+  margin-bottom: 4px;
+}
+.page-sub { color: #5a5550; font-size: 13px; margin-bottom: 16px; }
+.accent-line { height: 2px; background: #e8132a; width: 40px; margin-bottom: 24px; }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  padding: 8px 14px;
+  margin-bottom: 16px;
+}
+.search-bar input {
+  background: none;
+  border: none;
+  color: #f0ede8;
+  font-size: 14px;
+  flex: 1;
+  outline: none;
+}
+.search-bar input::placeholder { color: #5a5550; }
+
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.chip {
+  padding: 5px 12px;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5a5550;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.chip:hover, .chip.active { color: #e8132a; border-color: #e8132a; background: rgba(232,19,42,0.06); }
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.product-card:hover { border-color: #333333; }
+
+.product-img {
+  height: 140px;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  border-bottom: 1px solid #2a2a2a;
+  position: relative;
+}
+
+.stock-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  font-size: 11px;
+  padding: 2px 6px;
+  color: #5a5550;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+}
+.stock-badge.low { color: #f59e0b; }
+.stock-badge.out { color: #ef4444; }
+
+.product-body { padding: 14px; }
+.product-name { font-weight: 500; font-size: 14px; color: #f0ede8; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.product-brand { font-size: 12px; color: #5a5550; }
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-top: 1px solid #2a2a2a;
+}
+.product-price { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #c9a84c; }
+.product-cat { font-size: 11px; color: #5a5550; text-transform: uppercase; letter-spacing: 0.06em; }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+}
+.modal-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.06em; }
+.modal-header button { background: none; border: none; color: #a09a92; cursor: pointer; font-size: 18px; width: auto; }
+.modal-body { padding: 24px; }
+.modal-icon { font-size: 64px; text-align: center; padding: 16px; background: #1a1a1a; border-radius: 4px; margin-bottom: 16px; }
+.modal-desc { font-size: 14px; color: #a09a92; margin-bottom: 16px; line-height: 1.7; }
+.modal-row { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid #2a2a2a; }
+.modal-price { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #c9a84c; }
+.qty-control { display: flex; align-items: center; gap: 8px; }
+.qty-control button { background: none; border: 1px solid #2a2a2a; color: #f0ede8; width: 30px; height: 30px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+.qty-control span { font-size: 18px; font-weight: 600; min-width: 24px; text-align: center; }
+.modal-footer { padding: 16px 24px; border-top: 1px solid #2a2a2a; display: flex; justify-content: flex-end; gap: 10px; }
+.btn-cancel { background: transparent; border: 1px solid #2a2a2a; color: #a09a92; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; width: auto; }
+.btn-add { background: #e8132a; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: 600; width: auto; }
+.btn-add:hover { background: #c01020; }

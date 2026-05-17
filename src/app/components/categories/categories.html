@@ -1,0 +1,74 @@
+<div class="layout">
+  <aside class="sidebar">
+    <div class="logo">🎸 RIFF<span>STORE</span></div>
+    <nav>
+      <div class="nav-section">MENU</div>
+      <a routerLink="/dashboard" class="nav-item">Dashboard</a>
+      <a routerLink="/products" class="nav-item">Produtos</a>
+      <a routerLink="/categories" class="nav-item active">Categorias</a>
+      <a routerLink="/orders" class="nav-item">Meus Pedidos</a>
+      <a routerLink="/cart" class="nav-item">Carrinho</a>
+      @if (isAdmin) {
+        <div class="nav-section">ADMIN</div>
+        <a routerLink="/admin/products" class="nav-item">Gerenciar Produtos</a>
+        <a routerLink="/admin/orders" class="nav-item">Todos os Pedidos</a>
+      }
+    </nav>
+  </aside>
+
+  <main class="content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Categorias</h1>
+        <p class="page-sub">Navegue por tipo de equipamento</p>
+        <div class="accent-line"></div>
+      </div>
+      @if (isAdmin) {
+        <button class="btn-primary" (click)="openModal()">+ Nova Categoria</button>
+      }
+    </div>
+
+    <div class="categories-grid">
+      @for (c of categories; track c.id) {
+        <div class="cat-card">
+          <div class="cat-icon">{{ getCatIcon(c.name) }}</div>
+          <div class="cat-body">
+            <div class="cat-name">{{ c.name }}</div>
+            <div class="cat-desc">{{ c.description || 'Sem descrição' }}</div>
+          </div>
+          @if (isAdmin) {
+            <div class="cat-actions">
+              <button class="btn-edit" (click)="openModal(c)">Editar</button>
+              <button class="btn-delete" (click)="delete(c.id)">Excluir</button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </main>
+</div>
+
+@if (showModal) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <span class="modal-title">{{ editing ? 'Editar Categoria' : 'Nova Categoria' }}</span>
+        <button (click)="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <label>Nome</label>
+          <input [(ngModel)]="form.name" placeholder="Ex: Guitarras" />
+        </div>
+        <div class="input-group">
+          <label>Descrição</label>
+          <textarea [(ngModel)]="form.description" placeholder="Descreva a categoria..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+        <button class="btn-save" (click)="save()">Salvar</button>
+      </div>
+    </div>
+  </div>
+}

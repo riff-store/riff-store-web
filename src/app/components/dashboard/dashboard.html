@@ -1,0 +1,79 @@
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">🎸 RIFF<span>STORE</span></div>
+    <nav>
+      <div class="nav-section">MENU</div>
+      <a routerLink="/dashboard" class="nav-item active">Dashboard</a>
+      <a routerLink="/products" class="nav-item">Produtos</a>
+      <a routerLink="/categories" class="nav-item">Categorias</a>
+      <a routerLink="/orders" class="nav-item">Meus Pedidos</a>
+      <a routerLink="/cart" class="nav-item">Carrinho</a>
+      @if (isAdmin) {
+        <div class="nav-section">ADMIN</div>
+        <a routerLink="/admin/products" class="nav-item">Gerenciar Produtos</a>
+        <a routerLink="/admin/orders" class="nav-item">Todos os Pedidos</a>
+      }
+    </nav>
+    <div class="sidebar-footer">
+      <span>{{ user?.name }}</span>
+      <button (click)="logout()">Sair</button>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+    <h1 class="page-title">Dashboard</h1>
+    <p class="page-sub">Bem-vindo à Riff Store</p>
+    <div class="accent-line"></div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Produtos</div>
+        <div class="stat-value red">{{ products.length }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Em Estoque</div>
+        <div class="stat-value gold">{{ totalStock }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">{{ isAdmin ? 'Total Pedidos' : 'Meus Pedidos' }}</div>
+        <div class="stat-value">{{ orders.length }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Categorias</div>
+        <div class="stat-value">{{ categories.length }}</div>
+      </div>
+      @if (isAdmin) {
+        <div class="stat-card">
+          <div class="stat-label">Receita Total</div>
+          <div class="stat-value green">{{ fmt(totalRevenue) }}</div>
+        </div>
+      }
+    </div>
+
+    <div class="card">
+      <div class="card-header">Produtos Recentes</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Marca</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of products.slice(0, 5); track p.id) {
+            <tr>
+              <td>{{ p.name }}</td>
+              <td>{{ p.brand }}</td>
+              <td class="gold">{{ fmt(p.price) }}</td>
+              <td>{{ p.stock }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
