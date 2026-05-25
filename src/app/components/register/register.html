@@ -1,1 +1,40 @@
-<p>register works!</p>
+<div class="register-container">
+  <div class="register-card">
+
+    <div class="brand">
+      <h1 class="brand-title"><span class="white">RIFF</span><span class="red">STORE</span></h1>
+      <p class="brand-subtitle">🎸 EQUIPAMENTOS DE GUITARRA &amp; ROCK</p>
+    </div>
+
+    <div class="form-group">
+      <label>NOME</label>
+      <input type="text" placeholder="Seu nome completo" [(ngModel)]="nome" />
+    </div>
+
+    <div class="form-group">
+      <label>EMAIL</label>
+      <input type="email" placeholder="seu@email.com" [(ngModel)]="email" />
+    </div>
+
+    <div class="form-group">
+      <label>SENHA</label>
+      <input type="password" placeholder="••••••••" [(ngModel)]="senha" />
+    </div>
+
+    <div class="form-group">
+      <label>CONFIRMAR SENHA</label>
+      <input type="password" placeholder="••••••••" [(ngModel)]="confirmarSenha" />
+    </div>
+
+    @if (erro) {
+      <div class="error">{{ erro }}</div>
+    }
+
+    <button class="btn-cadastrar" (click)="cadastrar()">CADASTRAR</button>
+
+    <p class="login-link">
+      Já tem conta? <a routerLink="/login">Faça login</a>
+    </p>
+
+  </div>
+</div>

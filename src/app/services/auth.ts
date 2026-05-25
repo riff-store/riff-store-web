@@ -9,11 +9,23 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(`${this.api}/auth/login`, { email, password });
+    return this.http.post(
+      `${this.api}/auth/login`,
+      { email, password },
+      {
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   }
 
   register(name: string, email: string, password: string): Observable<any> {
-    return this.http.post(`${this.api}/auth/register`, { name, email, password });
+    return this.http.post(
+      `${this.api}/auth/register`,
+      { name, email, password },
+      {
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
   }
 
   saveToken(token: string, user: any) {
