@@ -5,7 +5,7 @@ import { AuthService } from './auth';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
-  private api = 'http://localhost:3000';
+  private api = 'https://riff-store-api-production.up.railway.app';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 

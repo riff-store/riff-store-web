@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private api = 'http://localhost:3000';
+  private api = 'https://riff-store-api-production.up.railway.app';
 
   constructor(private http: HttpClient) {}
 

@@ -47,7 +47,7 @@ export class Register {
       password: this.senha
     };
 
-    this.http.post('http://localhost:3000/auth/register', data)
+    this.http.post('https://riff-store-api-production.up.railway.app', data)
       .subscribe({
         next: (res) => {
           console.log('Usuário criado:', res);
